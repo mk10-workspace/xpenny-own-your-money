@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { Coins, Globe } from "lucide-react";
+import { Globe } from "lucide-react";
+
+import logo from "@/assets/logo.webp";
 
 type FooterLink = { label: string; to?: string; href?: string };
 
