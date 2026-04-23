@@ -26,7 +26,7 @@ const cols: { title: string; links: FooterLink[] }[] = [
     title: "Legal",
     links: [
       { label: "Privacy Policy", to: "/privacy" },
-      { label: "Terms of Service", href: "#" },
+      { label: "Terms of Service", to: "/terms" },
       { label: "Cookies", href: "#" },
       { label: "Imprint", href: "#" },
     ],
