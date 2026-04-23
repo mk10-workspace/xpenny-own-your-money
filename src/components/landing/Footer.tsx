@@ -1,17 +1,35 @@
+import { Link } from "@tanstack/react-router";
 import { Coins, Globe } from "lucide-react";
 
-const cols = [
+type FooterLink = { label: string; to?: string; href?: string };
+
+const cols: { title: string; links: FooterLink[] }[] = [
   {
     title: "Product",
-    links: ["Features", "Security", "Download", "Roadmap"],
+    links: [
+      { label: "Features", href: "/#features" },
+      { label: "Security", href: "/#security" },
+      { label: "Download", href: "/#download" },
+      { label: "Roadmap", href: "#" },
+    ],
   },
   {
     title: "Company",
-    links: ["About", "Blog", "Press", "Contact"],
+    links: [
+      { label: "About", href: "#" },
+      { label: "Blog", href: "#" },
+      { label: "Press", href: "#" },
+      { label: "Contact", href: "#" },
+    ],
   },
   {
     title: "Legal",
-    links: ["Privacy Policy", "Terms of Service", "Cookies", "Imprint"],
+    links: [
+      { label: "Privacy Policy", to: "/privacy" },
+      { label: "Terms of Service", href: "#" },
+      { label: "Cookies", href: "#" },
+      { label: "Imprint", href: "#" },
+    ],
   },
 ];
 
