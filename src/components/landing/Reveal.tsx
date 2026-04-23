@@ -6,11 +6,10 @@ interface RevealProps {
   children: ReactNode;
   className?: string;
   delay?: number;
-  as?: "div" | "section" | "article" | "li";
 }
 
-export function Reveal({ children, className, delay = 0, as: Tag = "div" }: RevealProps) {
-  const ref = useRef<HTMLElement | null>(null);
+export function Reveal({ children, className, delay = 0 }: RevealProps) {
+  const ref = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -32,12 +31,12 @@ export function Reveal({ children, className, delay = 0, as: Tag = "div" }: Reve
   }, []);
 
   return (
-    <Tag
-      ref={ref as React.RefObject<HTMLDivElement>}
+    <div
+      ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
       className={cn("reveal", visible && "is-visible", className)}
     >
       {children}
-    </Tag>
+    </div>
   );
 }
