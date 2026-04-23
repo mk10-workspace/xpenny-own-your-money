@@ -42,9 +42,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-5">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-glow text-primary-foreground">
-                <Coins className="h-5 w-5" />
-              </span>
+              <img src={logo} alt="xPenny logo" className="h-9 w-9 rounded-xl" />
               <span className="font-heading text-lg font-bold tracking-tight">
                 x<span className="text-gradient-emerald">Penny</span>
               </span>
