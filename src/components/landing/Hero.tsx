@@ -1,4 +1,4 @@
-import { Sparkles, Star, Wifi, ShieldCheck } from "lucide-react";
+import { Sparkles, Wifi, ShieldCheck } from "lucide-react";
 
 import { PhoneMockup } from "./PhoneMockup";
 import { StoreBadges } from "./StoreBadges";
@@ -42,9 +42,6 @@ export function Hero() {
             </span>
             <span className="inline-flex items-center gap-1.5">
               <ShieldCheck className="h-4 w-4 text-primary" /> End-to-end private
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <Star className="h-4 w-4 fill-gold text-gold" /> 4.9 average rating
             </span>
           </div>
         </div>

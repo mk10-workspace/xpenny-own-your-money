@@ -8,9 +8,7 @@ import { Footer } from "@/components/landing/Footer";
 import { Hero } from "@/components/landing/Hero";
 import { Nav } from "@/components/landing/Nav";
 import { Security } from "@/components/landing/Security";
-import { SocialProof } from "@/components/landing/SocialProof";
 import { Steps } from "@/components/landing/Steps";
-import { Testimonials } from "@/components/landing/Testimonials";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -49,12 +47,10 @@ function Index() {
       <Nav />
       <main>
         <Hero />
-        <SocialProof />
         <Features />
         <FeatureGrid />
         <Security />
         <Steps />
-        <Testimonials />
         <FAQ />
         <FinalCTA />
       </main>
