@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Coins, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
+import logo from "@/assets/logo.webp";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -37,9 +38,11 @@ export function Nav() {
           )}
         >
           <a href="#top" className="flex items-center gap-2 group">
-            <span className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-glow text-primary-foreground shadow-[0_8px_24px_-8px_var(--primary)]">
-              <Coins className="h-5 w-5" />
-            </span>
+            <img
+              src={logo}
+              alt="xPenny logo"
+              className="h-9 w-9 rounded-xl shadow-[0_8px_24px_-8px_var(--primary)]"
+            />
             <span className="font-heading text-lg font-bold tracking-tight">
               x<span className="text-gradient-emerald">Penny</span>
             </span>
