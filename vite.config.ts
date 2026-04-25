@@ -11,5 +11,5 @@ import { nitro } from "nitro/vite";
 // so the production build outputs a Vercel-compatible deployment.
 export default defineConfig({
   cloudflare: false,
-  plugins: [nitro({ config: { preset: "vercel" } })],
+  plugins: [nitro({ preset: "vercel" })],
 });
