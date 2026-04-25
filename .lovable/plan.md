@@ -1,61 +1,43 @@
+## The problem
 
-# xPenny — Premium Fintech Landing Page
+Your project is built for **Cloudflare Workers**, not Vercel. The build config (`@lovable.dev/vite-tanstack-config`) compiles your app into a Cloudflare Worker bundle, and `wrangler.jsonc` is the Cloudflare deployment manifest. When Vercel runs `vite build`, it produces an output Vercel doesn't know how to serve — so every URL returns `404: NOT_FOUND`.
 
-A high-conversion, single-route landing page with an Emerald Prestige dark aesthetic, glassmorphism, and subtle motion. Fully responsive (mobile → desktop).
+You have two clean paths forward. Pick one.
 
-## Visual direction
-- **Palette:** Deep emerald-black background `#0a1410` → `#064e3b`, surfaces in `#0d7a5f`, vibrant accent `#10b981`, soft cream text `#f5f0e0`.
-- **Typography:** Sora (headings, tight tracking) + Manrope (body).
-- **Effects:** Frosted glass cards (backdrop-blur + low-opacity borders), emerald glow gradients, grain/noise overlay, soft float + fade-in on scroll, gradient mesh behind hero.
-- **Iconography:** Lucide line icons in emerald, tinted glassy badges.
+---
 
-## Page sections (single route: `/`)
+## Option A (recommended): Deploy via Lovable instead of Vercel
 
-1. **Sticky Nav**
-   - xPenny wordmark + coin glyph, links (Features, Security, Download), small "Get the app" CTA. Translucent on scroll.
+This is by far the simplest. Lovable hosting is already configured for this exact stack — SSR, SPA fallback, custom domains, edge functions all work out of the box with zero config.
 
-2. **Hero — "Take Control of Your Spending & Debts"**
-   - Left: eyebrow chip ("Personal finance, reimagined"), large headline, subheadline, App Store + Google Play badges (placeholder `#`), trust row ("Offline-first · End-to-end private · 4.9 ★").
-   - Right: **Phone + floating UI cards** — central tilted phone showing Budget screen, with 3 floating glass cards orbiting it: a transaction row ("Coffee –$4.20"), an IOU card ("Alex owes you $25"), a mini bar chart ("This month"). Subtle parallax on mouse move, gentle float animation, emerald glow behind phone.
+Steps you take (no code changes needed):
+1. In the Lovable editor, click **Publish** (top right).
+2. Your app goes live at `your-project.lovable.app`.
+3. Optional: connect a custom domain in **Project Settings → Domains**.
 
-3. **Logo / social proof strip**
-   - "Loved by students & young pros" + 5 muted partner/press marks.
+You can keep the GitHub sync running for version control — just don't deploy from Vercel.
 
-4. **Feature highlights — zig-zag layout (3 alternating rows)**
-   - **Smart Expense Tracking** — phone screenshot left, copy right (top expenses, monthly budget, categories).
-   - **Debt & IOU Management** — copy left, "Manage Persons" mock right (avatars + balances, "Settle up" button).
-   - **Lightning Fast & Offline-First** — phone with offline indicator + speed metric ("0ms · local SQLite"), copy right.
-   - Each row: glass card framing, emerald accent icon, 2–3 bullet sub-benefits.
+---
 
-5. **Feature grid (secondary)** — 4 compact glass cards
-   - Multi-language · Biometric (FaceID/TouchID) · Google Sign-in · Local-only data.
+## Option B: Make it work on Vercel
 
-6. **Security & Privacy section**
-   - Centered shield emblem + headline "Your money. Your data. Period."
-   - 3 columns: Local-first storage · Biometric lock · Zero tracking. Subtle lock-pattern background.
+This requires reconfiguring the build to target Vercel's runtime instead of Cloudflare Workers. TanStack Start supports Vercel via a different preset.
 
-7. **"How it works" — 3 steps**
-   - Download → Add expenses & people → See where your money goes. Numbered glass tiles connected by a dotted emerald line.
+What I'd change in code:
+1. **`vite.config.ts`** — stop using the Lovable Cloudflare-targeted config. Use `@tanstack/react-start/plugin/vite` directly with `target: 'vercel'`, plus the standard plugins (React, Tailwind, tsconfig paths).
+2. **Remove `wrangler.jsonc`** — Cloudflare-only, ignored by Vercel.
+3. **Add a `vercel.json`** if needed for the SSR function routing (TanStack's Vercel preset usually handles this automatically).
+4. **Add Vercel-specific dependency** if required by the preset.
 
-8. **Testimonials** — 3 short quotes in glass cards (student, freelancer, friend group organizer).
+Trade-offs to know before choosing this:
+- The Lovable in-editor preview/sandbox depends on `@lovable.dev/vite-tanstack-config`. Removing it may break the live preview inside the Lovable editor — you'd be developing "blind" and only seeing changes after pushing to Vercel.
+- Server functions, SSR behavior, and any edge-runtime assumptions (the docs in this project assume Cloudflare Workers + nodejs_compat) may behave differently on Vercel's runtime. Some Node packages that work on Vercel won't work on Cloudflare and vice-versa.
+- You take on responsibility for keeping the Vercel config in sync with TanStack Start version upgrades.
 
-9. **FAQ** — 5 collapsible items (Is it free? Does it sync? Which platforms? How is data stored? Can I export?). Uses shadcn Accordion.
+---
 
-10. **Final CTA**
-    - Full-width emerald gradient panel, headline "Start tracking in 60 seconds", subcopy, both store badges, "No account required to start."
+## My recommendation
 
-11. **Footer**
-    - Logo + tagline, link columns (Product, Company, Legal — Privacy Policy, Terms, Contact), language switcher mock, copyright.
+**Go with Option A.** Click Publish in Lovable. It's one click, zero config, and the app is purpose-built for this hosting target. Use Vercel only if you have a specific business reason (existing Vercel team workflow, Vercel-only integrations, etc.).
 
-## Technical plan
-- Replace `src/routes/index.tsx` placeholder with the full landing page composed of small section components in `src/components/landing/` (Nav, Hero, PhoneMockup, FeatureRow, FeatureGrid, Security, Steps, Testimonials, FAQ, FinalCTA, Footer).
-- Add Sora + Manrope via Google Fonts in `__root.tsx` head links; map them as CSS vars in `src/styles.css` (`--font-heading`, `--font-body`) and apply via Tailwind utilities.
-- Update `src/styles.css` design tokens to the Emerald Prestige palette in oklch (background, foreground, primary = emerald, card with translucent surface, border with low-opacity cream). Keep dark mode as the default look.
-- Build phone + floating cards as pure CSS/SVG (no images needed) — rounded device frame, status bar, mock UI rows; floating cards animated with CSS keyframes (`float`, `fade-in-up`).
-- Use `IntersectionObserver` (tiny inline hook) for scroll-reveal; `prefers-reduced-motion` respected.
-- Per-page SEO in the route's `head()`: title "xPenny — Track spending & debts, offline-first", description, og:title, og:description, og:image (omit since no real asset).
-- Reuse shadcn `Button`, `Accordion`, `Badge`. No new dependencies.
-- Fully responsive: mobile stacks hero copy above phone, zig-zag collapses to single column, nav becomes a Sheet menu on small screens.
-
-## Out of scope
-- Real app store links, real screenshots, backend, analytics, i18n implementation (UI mock only).
+Reply with **A** or **B** and I'll proceed accordingly. If B, I'll also need to know whether you want to keep the Lovable in-editor preview working (which constrains how I restructure the Vite config).
