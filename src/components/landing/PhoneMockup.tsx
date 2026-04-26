@@ -1,23 +1,56 @@
 import { cn } from "@/lib/utils";
 
-import accountsShot from "@/assets/app-accounts.png";
-import categoriesShot from "@/assets/app-categories.png";
-import transactionsShot from "@/assets/app-transactions.png";
+import accountsDark from "@/assets/app-accounts-dark.png";
+import accountsLight from "@/assets/app-accounts-light.png";
+import categoriesDark from "@/assets/app-categories-dark.png";
+import categoriesLight from "@/assets/app-categories-light.png";
+import transactionsDark from "@/assets/app-transactions-dark.png";
+import transactionsLight from "@/assets/app-transactions-light.png";
+
+type Variant = "budget" | "debts" | "offline";
+type Theme = "dark" | "light";
 
 interface PhoneMockupProps {
-  variant?: "budget" | "debts" | "offline";
+  variant?: Variant;
+  theme?: Theme;
   className?: string;
 }
 
-const screenshots: Record<NonNullable<PhoneMockupProps["variant"]>, { src: string; alt: string }> =
-  {
-    budget: { src: transactionsShot, alt: "App transactions screen showing net flow and recent activity" },
-    debts: { src: categoriesShot, alt: "App expense categories screen with spending breakdown" },
-    offline: { src: accountsShot, alt: "App accounts screen listing user accounts and balances" },
-  };
+const screenshots: Record<Variant, Record<Theme, { src: string; alt: string }>> = {
+  budget: {
+    dark: {
+      src: transactionsDark,
+      alt: "xPenny transactions screen in dark mode showing net flow and recent activity",
+    },
+    light: {
+      src: transactionsLight,
+      alt: "xPenny transactions screen in light mode showing net flow and recent activity",
+    },
+  },
+  debts: {
+    dark: {
+      src: categoriesDark,
+      alt: "xPenny expense categories screen in dark mode with spending breakdown",
+    },
+    light: {
+      src: categoriesLight,
+      alt: "xPenny expense categories screen in light mode with spending breakdown",
+    },
+  },
+  offline: {
+    dark: {
+      src: accountsDark,
+      alt: "xPenny accounts screen in dark mode listing user accounts and balances",
+    },
+    light: {
+      src: accountsLight,
+      alt: "xPenny accounts screen in light mode listing user accounts and balances",
+    },
+  },
+};
 
-export function PhoneMockup({ variant = "budget", className }: PhoneMockupProps) {
-  const shot = screenshots[variant];
+export function PhoneMockup({ variant = "budget", theme = "dark", className }: PhoneMockupProps) {
+  const shot = screenshots[variant][theme];
 
   return (
     <div
