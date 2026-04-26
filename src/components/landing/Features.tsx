@@ -1,45 +1,50 @@
-import { Check, Users, Wallet, Zap } from "lucide-react";
+import { Check, LayoutDashboard, Users, Sun, Moon } from "lucide-react";
+import { useState } from "react";
 
 import { PhoneMockup } from "./PhoneMockup";
 import { Reveal } from "./Reveal";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const rows = [
   {
-    icon: Wallet,
-    eyebrow: "Smart expense tracking",
+    icon: LayoutDashboard,
+    eyebrow: "Dashboard & transactions",
     title: "Every dollar, beautifully accounted for.",
-    body: "Log transactions in seconds, see your top categories, and stay on top of your monthly budget without the spreadsheet stress.",
+    body: "Track Expenses, Income, Transfers and Debts in seconds. See your net flow, top categories and monthly progress without the spreadsheet stress.",
     bullets: [
-      "One-tap transaction logging with categories",
-      "Auto-grouped top expenses & insights",
+      "Four transaction types: Expense, Income, Transfer, Debt",
+      "Real-time net worth, inflow & outflow",
       "Monthly budgets with live progress",
+      "Recurring transactions and reminders",
     ],
     variant: "budget" as const,
     flip: false,
   },
   {
     icon: Users,
-    eyebrow: "Debt & IOU management",
-    title: "Never forget who owes who.",
-    body: "A dedicated Manage Persons hub tracks shared expenses and personal loans in real-time. Settle up with one tap when you're square.",
+    eyebrow: "Categories & accounts",
+    title: "Organize spending. Master your accounts.",
+    body: "Custom categories with unique icons and colors. Manage Regular, Debt and Savings accounts — including credit cards, loans and goal-based emergency funds.",
     bullets: [
-      "Per-person balances updated instantly",
-      "Track both directions: you owe & owed",
-      "One-tap settle-up & history",
+      "Fully customizable categories & subcategories",
+      "Regular, Debt and Savings account types",
+      "Goal tracking on savings accounts",
+      "Multi-currency with custom formatting",
     ],
     variant: "debts" as const,
     flip: true,
   },
   {
-    icon: Zap,
-    eyebrow: "Lightning fast & offline-first",
-    title: "Built on local SQLite. Zero lag.",
-    body: "Your data lives on your device, so the app feels instant — even on the subway, on a plane, or in the middle of nowhere.",
+    icon: Sun,
+    eyebrow: "Yours, in any light",
+    title: "Built on local SQLite. Beautiful in every theme.",
+    body: "Your data lives on your device — encrypted, instant, and yours alone. Switch between dark, light, and system themes without losing a beat.",
     bullets: [
-      "0ms reads from local SQLite database",
-      "Works fully offline, syncs when online",
-      "No spinners, no waiting — ever",
+      "Offline-first, encrypted local SQLite database",
+      "Dark, Light and system-default themes",
+      "Optional Google Drive backup & multi-device sync",
+      "Export transactions to CSV anytime",
     ],
     variant: "offline" as const,
     flip: false,
@@ -47,6 +52,8 @@ const rows = [
 ];
 
 export function Features() {
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+
   return (
     <section id="features" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-4">
@@ -61,9 +68,47 @@ export function Features() {
           <p className="mt-4 text-base text-muted-foreground">
             A focused toolkit for daily money — without the bloat of legacy banking apps.
           </p>
+
+          {/* Theme toggle */}
+          <div
+            className="mx-auto mt-8 inline-flex items-center gap-1 rounded-full border border-border bg-surface/60 p-1 backdrop-blur"
+            role="tablist"
+            aria-label="App theme preview"
+          >
+            <Button
+              type="button"
+              size="sm"
+              variant={theme === "dark" ? "default" : "ghost"}
+              onClick={() => setTheme("dark")}
+              className={cn(
+                "rounded-full px-4",
+                theme === "dark" && "bg-primary text-primary-foreground hover:bg-primary/90",
+              )}
+              role="tab"
+              aria-selected={theme === "dark"}
+            >
+              <Moon className="mr-1.5 h-3.5 w-3.5" />
+              Dark
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant={theme === "light" ? "default" : "ghost"}
+              onClick={() => setTheme("light")}
+              className={cn(
+                "rounded-full px-4",
+                theme === "light" && "bg-primary text-primary-foreground hover:bg-primary/90",
+              )}
+              role="tab"
+              aria-selected={theme === "light"}
+            >
+              <Sun className="mr-1.5 h-3.5 w-3.5" />
+              Light
+            </Button>
+          </div>
         </Reveal>
 
-        <div className="mt-20 space-y-24 md:space-y-32">
+        <div className="mt-16 space-y-24 md:space-y-32">
           {rows.map((row) => {
             const Icon = row.icon;
             return (
@@ -78,7 +123,7 @@ export function Features() {
                 <div className="relative">
                   <div className="absolute inset-0 -z-10 m-auto h-64 w-64 rounded-full bg-primary/20 blur-[80px]" />
                   <div className="glass-strong rounded-3xl p-6 sm:p-10">
-                    <PhoneMockup variant={row.variant} />
+                    <PhoneMockup variant={row.variant} theme={theme} />
                   </div>
                 </div>
 
