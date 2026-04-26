@@ -7,9 +7,16 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import { nitro } from "nitro/vite";
 
-// Disable the Cloudflare build plugin and use Nitro with the Vercel preset instead,
-// so the production build outputs a Vercel-compatible deployment.
-export default defineConfig({
-  cloudflare: false,
-  plugins: [nitro({ preset: "vercel" })],
-});
+// When DEPLOY_TARGET=vercel (set by Vercel via vercel.json), build with the Nitro
+// Vercel preset so output goes to .vercel/output. Otherwise use the default
+// Cloudflare build so Lovable's in-editor preview, publish, and dist-check work.
+const isVercel = process.env.DEPLOY_TARGET === "vercel";
+
+export default defineConfig(
+  isVercel
+    ? {
+        cloudflare: false,
+        plugins: [nitro({ preset: "vercel" })],
+      }
+    : {},
+);
