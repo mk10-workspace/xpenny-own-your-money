@@ -1,9 +1,5 @@
 import { cn } from "@/lib/utils";
 
-import accountsDark from "@/assets/app-accounts-dark.png";
-import accountsLight from "@/assets/app-accounts-light.png";
-import categoriesDark from "@/assets/app-categories-dark.png";
-import categoriesLight from "@/assets/app-categories-light.png";
 import transactionsDark from "@/assets/app-transactions-dark.png";
 import transactionsLight from "@/assets/app-transactions-light.png";
 
@@ -16,41 +12,19 @@ interface PhoneMockupProps {
   className?: string;
 }
 
-const screenshots: Record<Variant, Record<Theme, { src: string; alt: string }>> = {
-  budget: {
-    dark: {
-      src: transactionsDark,
-      alt: "xPenny transactions screen in dark mode showing net flow and recent activity",
-    },
-    light: {
-      src: transactionsLight,
-      alt: "xPenny transactions screen in light mode showing net flow and recent activity",
-    },
+const screenshots: Record<Theme, { src: string; alt: string }> = {
+  dark: {
+    src: transactionsDark,
+    alt: "xPenny dashboard in dark mode showing Net Flow, inflow/outflow and transactions tab",
   },
-  debts: {
-    dark: {
-      src: categoriesDark,
-      alt: "xPenny expense categories screen in dark mode with spending breakdown",
-    },
-    light: {
-      src: categoriesLight,
-      alt: "xPenny expense categories screen in light mode with spending breakdown",
-    },
-  },
-  offline: {
-    dark: {
-      src: accountsDark,
-      alt: "xPenny accounts screen in dark mode listing user accounts and balances",
-    },
-    light: {
-      src: accountsLight,
-      alt: "xPenny accounts screen in light mode listing user accounts and balances",
-    },
+  light: {
+    src: transactionsLight,
+    alt: "xPenny dashboard in light mode showing Net Flow, inflow/outflow and transactions tab",
   },
 };
 
-export function PhoneMockup({ variant = "budget", theme = "dark", className }: PhoneMockupProps) {
-  const shot = screenshots[variant][theme];
+export function PhoneMockup({ theme = "dark", className }: PhoneMockupProps) {
+  const shot = screenshots[theme];
 
   return (
     <div
