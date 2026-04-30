@@ -27,7 +27,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border/60 bg-surface/30 py-14">
       <div className="mx-auto max-w-7xl px-4">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-5">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2">
               <img src={logo} alt="xPenny logo" className="h-9 w-9 rounded-xl" />
