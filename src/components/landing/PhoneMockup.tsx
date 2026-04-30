@@ -45,7 +45,7 @@ export function PhoneMockup({ theme = "dark", className }: PhoneMockupProps) {
         <img
           src={shot.src}
           alt={shot.alt}
-          className="h-full w-full object-cover object-top"
+          className="h-full w-full object-top object-contain"
           loading="lazy"
         />
       </div>
