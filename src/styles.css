@@ -64,7 +64,8 @@
 }
 
 /* App theme — Emerald (#059669) on near-black (#121212), dark by default */
-:root {
+:root,
+.dark {
   --radius: 0.875rem;
 
   --background: oklch(0.18 0 0);
