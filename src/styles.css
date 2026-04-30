@@ -63,68 +63,106 @@
   --animate-shimmer: shimmer 3s linear infinite;
 }
 
-/* Emerald Prestige — dark by default */
+/* App theme — Emerald (#059669) on near-black (#121212), dark by default */
 :root {
   --radius: 0.875rem;
 
-  --background: oklch(0.18 0.04 165);
-  --foreground: oklch(0.96 0.02 95);
+  --background: oklch(0.18 0 0);
+  --foreground: oklch(0.98 0 0);
 
-  --surface: oklch(0.22 0.05 165);
-  --surface-elevated: oklch(0.27 0.06 165);
+  --surface: oklch(0.22 0.005 165);
+  --surface-elevated: oklch(0.27 0.008 165);
 
-  --card: oklch(0.22 0.05 165 / 60%);
-  --card-foreground: oklch(0.96 0.02 95);
+  --card: oklch(0.22 0.005 165 / 70%);
+  --card-foreground: oklch(0.98 0 0);
 
-  --popover: oklch(0.22 0.05 165);
-  --popover-foreground: oklch(0.96 0.02 95);
+  --popover: oklch(0.22 0.005 165);
+  --popover-foreground: oklch(0.98 0 0);
 
-  --primary: oklch(0.74 0.17 158);
-  --primary-foreground: oklch(0.16 0.04 165);
-  --primary-glow: oklch(0.82 0.18 158);
+  --primary: oklch(0.59 0.13 158);
+  --primary-foreground: oklch(0.99 0 0);
+  --primary-glow: oklch(0.7 0.15 158);
 
-  --secondary: oklch(0.32 0.06 165);
-  --secondary-foreground: oklch(0.96 0.02 95);
+  --secondary: oklch(0.3 0.02 165);
+  --secondary-foreground: oklch(0.98 0 0);
 
-  --muted: oklch(0.27 0.05 165);
-  --muted-foreground: oklch(0.72 0.03 150);
+  --muted: oklch(0.27 0.01 165);
+  --muted-foreground: oklch(0.72 0.02 150);
 
-  --accent: oklch(0.74 0.17 158);
-  --accent-foreground: oklch(0.16 0.04 165);
+  --accent: oklch(0.59 0.13 158);
+  --accent-foreground: oklch(0.99 0 0);
 
   --gold: oklch(0.82 0.13 90);
 
   --destructive: oklch(0.65 0.22 25);
-  --destructive-foreground: oklch(0.98 0.01 95);
+  --destructive-foreground: oklch(0.99 0 0);
 
-  --border: oklch(0.96 0.02 95 / 10%);
-  --input: oklch(0.96 0.02 95 / 12%);
-  --ring: oklch(0.74 0.17 158 / 60%);
+  --border: oklch(0.98 0 0 / 10%);
+  --input: oklch(0.98 0 0 / 12%);
+  --ring: oklch(0.59 0.13 158 / 60%);
 
-  --chart-1: oklch(0.74 0.17 158);
-  --chart-2: oklch(0.82 0.13 90);
-  --chart-3: oklch(0.6 0.15 200);
-  --chart-4: oklch(0.7 0.18 130);
+  --chart-1: oklch(0.59 0.13 158);
+  --chart-2: oklch(0.36 0.07 162);
+  --chart-3: oklch(0.7 0.15 158);
+  --chart-4: oklch(0.82 0.13 90);
   --chart-5: oklch(0.55 0.18 280);
 
-  --sidebar: oklch(0.2 0.05 165);
-  --sidebar-foreground: oklch(0.96 0.02 95);
-  --sidebar-primary: oklch(0.74 0.17 158);
-  --sidebar-primary-foreground: oklch(0.16 0.04 165);
-  --sidebar-accent: oklch(0.27 0.05 165);
-  --sidebar-accent-foreground: oklch(0.96 0.02 95);
-  --sidebar-border: oklch(0.96 0.02 95 / 10%);
-  --sidebar-ring: oklch(0.74 0.17 158 / 60%);
+  --sidebar: oklch(0.2 0.005 165);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.59 0.13 158);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.27 0.01 165);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(0.98 0 0 / 10%);
+  --sidebar-ring: oklch(0.59 0.13 158 / 60%);
 
-  --gradient-primary: linear-gradient(135deg, oklch(0.74 0.17 158), oklch(0.6 0.16 175));
+  --gradient-primary: linear-gradient(135deg, oklch(0.59 0.13 158), oklch(0.36 0.07 162));
   --gradient-hero: radial-gradient(
       ellipse 80% 60% at 70% 20%,
-      oklch(0.74 0.17 158 / 25%),
+      oklch(0.59 0.13 158 / 25%),
       transparent 60%
     ),
-    radial-gradient(ellipse 60% 50% at 20% 80%, oklch(0.55 0.14 175 / 18%), transparent 60%);
-  --shadow-glow: 0 30px 80px -20px oklch(0.74 0.17 158 / 35%);
-  --shadow-elegant: 0 20px 50px -20px oklch(0 0 0 / 50%);
+    radial-gradient(ellipse 60% 50% at 20% 80%, oklch(0.36 0.07 162 / 22%), transparent 60%);
+  --shadow-glow: 0 30px 80px -20px oklch(0.59 0.13 158 / 40%);
+  --shadow-elegant: 0 20px 50px -20px oklch(0 0 0 / 60%);
+}
+
+/* Light mode — pure white background, same emerald primary */
+.light {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.18 0 0);
+
+  --surface: oklch(0.98 0 0);
+  --surface-elevated: oklch(0.96 0 0);
+
+  --card: oklch(1 0 0 / 80%);
+  --card-foreground: oklch(0.18 0 0);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0 0);
+
+  --primary: oklch(0.59 0.13 158);
+  --primary-foreground: oklch(0.99 0 0);
+  --primary-glow: oklch(0.7 0.15 158);
+
+  --secondary: oklch(0.95 0.005 165);
+  --secondary-foreground: oklch(0.2 0 0);
+
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.45 0.01 165);
+
+  --accent: oklch(0.59 0.13 158);
+  --accent-foreground: oklch(0.99 0 0);
+
+  --border: oklch(0.18 0 0 / 10%);
+  --input: oklch(0.18 0 0 / 12%);
+  --ring: oklch(0.59 0.13 158 / 50%);
+
+  --sidebar: oklch(0.98 0 0);
+  --sidebar-foreground: oklch(0.18 0 0);
+  --sidebar-accent: oklch(0.96 0 0);
+  --sidebar-accent-foreground: oklch(0.18 0 0);
+  --sidebar-border: oklch(0.18 0 0 / 10%);
 }
 
 @keyframes float {
