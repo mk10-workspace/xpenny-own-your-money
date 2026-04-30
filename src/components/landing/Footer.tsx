@@ -12,16 +12,6 @@ const cols: { title: string; links: FooterLink[] }[] = [
       { label: "Features", href: "/#features" },
       { label: "Security", href: "/#security" },
       { label: "Download", href: "/#download" },
-      { label: "Roadmap", href: "#" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "About", href: "#" },
-      { label: "Blog", href: "#" },
-      { label: "Press", href: "#" },
-      { label: "Contact", href: "#" },
     ],
   },
   {
@@ -29,8 +19,6 @@ const cols: { title: string; links: FooterLink[] }[] = [
     links: [
       { label: "Privacy Policy", to: "/privacy" },
       { label: "Terms of Service", to: "/terms" },
-      { label: "Cookies", href: "#" },
-      { label: "Imprint", href: "#" },
     ],
   },
 ];
@@ -39,7 +27,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border/60 bg-surface/30 py-14">
       <div className="mx-auto max-w-7xl px-4">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-5">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2">
               <img src={logo} alt="xPenny logo" className="h-9 w-9 rounded-xl" />

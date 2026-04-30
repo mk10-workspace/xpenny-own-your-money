@@ -18,7 +18,10 @@ export const Route = createFileRoute("/terms")({
         property: "og:description",
         content: "Read the terms that govern your use of the xPenny mobile application.",
       },
+      { property: "og:url", content: "https://xpenny.app/terms" },
+      { name: "robots", content: "index, follow" },
     ],
+    links: [{ rel: "canonical", href: "https://xpenny.app/terms" }],
   }),
   component: TermsPage,
 });

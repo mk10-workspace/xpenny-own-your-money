@@ -19,7 +19,10 @@ export const Route = createFileRoute("/privacy")({
         content:
           "xPenny is local-first and private. Read how we handle data, backups, and security.",
       },
+      { property: "og:url", content: "https://xpenny.app/privacy" },
+      { name: "robots", content: "index, follow" },
     ],
+    links: [{ rel: "canonical", href: "https://xpenny.app/privacy" }],
   }),
   component: PrivacyPage,
 });

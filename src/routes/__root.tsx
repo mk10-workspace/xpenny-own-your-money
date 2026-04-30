@@ -25,6 +25,9 @@ function NotFoundComponent() {
   );
 }
 
+const SITE_URL = "https://xpenny.app";
+const OG_IMAGE = `${SITE_URL}/og-image.png`;
+
 export const Route = createRootRoute({
   head: () => ({
     scripts: [
@@ -32,6 +35,17 @@ export const Route = createRootRoute({
       {
         children:
           "window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-EPHMXJ7F7S');",
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "xPenny",
+          url: SITE_URL,
+          logo: `${SITE_URL}/favicon.webp`,
+          sameAs: [],
+        }),
       },
     ],
     meta: [
@@ -44,12 +58,35 @@ export const Route = createRootRoute({
           "xPenny is a blazing-fast personal finance app combining expense tracking with debt & IOU management. Offline-first, private, and beautifully simple.",
       },
       { name: "author", content: "xPenny" },
+      { name: "publisher", content: "xPenny" },
+      { name: "application-name", content: "xPenny" },
+      { name: "apple-mobile-web-app-title", content: "xPenny" },
       { name: "theme-color", content: "#0a1410" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
+      { name: "googlebot", content: "index, follow" },
+      { name: "format-detection", content: "telephone=no" },
+      {
+        name: "keywords",
+        content:
+          "expense tracker, personal finance app, debt tracker, IOU app, budgeting app, offline finance app, money tracker, spending tracker, private finance app",
+      },
+      { property: "og:site_name", content: "xPenny" },
+      { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_US" },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "xPenny — track spending & debts, offline-first" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: OG_IMAGE },
+      { name: "twitter:image:alt", content: "xPenny — track spending & debts, offline-first" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/webp", href: "/favicon.webp" },
       { rel: "apple-touch-icon", href: "/favicon.webp" },
+      { rel: "canonical", href: SITE_URL + "/" },
+      { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
