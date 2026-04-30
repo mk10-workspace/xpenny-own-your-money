@@ -1,30 +1,47 @@
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/components/theme-provider";
 
+import heroDark from "@/assets/app-hero-dark.png";
+import heroLight from "@/assets/app-hero-light.png";
 import transactionsDark from "@/assets/app-transactions-dark.png";
 import transactionsLight from "@/assets/app-transactions-light.png";
+import categoriesDark from "@/assets/app-categories-dark.png";
+import categoriesLight from "@/assets/app-categories-light.png";
+import accountsDark from "@/assets/app-accounts-dark.png";
+import accountsLight from "@/assets/app-accounts-light.png";
 
-type Variant = "budget" | "debts" | "offline";
+export type PhoneVariant = "hero" | "transactions" | "categories" | "accounts";
 type Theme = "dark" | "light";
 
 interface PhoneMockupProps {
-  variant?: Variant;
+  variant?: PhoneVariant;
   theme?: Theme;
   className?: string;
 }
 
-const screenshots: Record<Theme, { src: string; alt: string }> = {
-  dark: {
-    src: transactionsDark,
-    alt: "xPenny dashboard in dark mode showing Net Flow, inflow/outflow and transactions tab",
+const screenshots: Record<PhoneVariant, Record<Theme, { src: string; alt: string }>> = {
+  hero: {
+    dark: { src: heroDark, alt: "xPenny dashboard overview in dark mode" },
+    light: { src: heroLight, alt: "xPenny dashboard overview in light mode" },
   },
-  light: {
-    src: transactionsLight,
-    alt: "xPenny dashboard in light mode showing Net Flow, inflow/outflow and transactions tab",
+  transactions: {
+    dark: { src: transactionsDark, alt: "xPenny transactions in dark mode" },
+    light: { src: transactionsLight, alt: "xPenny transactions in light mode" },
+  },
+  categories: {
+    dark: { src: categoriesDark, alt: "xPenny categories in dark mode" },
+    light: { src: categoriesLight, alt: "xPenny categories in light mode" },
+  },
+  accounts: {
+    dark: { src: accountsDark, alt: "xPenny accounts in dark mode" },
+    light: { src: accountsLight, alt: "xPenny accounts in light mode" },
   },
 };
 
-export function PhoneMockup({ theme = "dark", className }: PhoneMockupProps) {
-  const shot = screenshots[theme];
+export function PhoneMockup({ variant = "hero", theme, className }: PhoneMockupProps) {
+  const { theme: ctxTheme } = useTheme();
+  const activeTheme = theme ?? ctxTheme;
+  const shot = screenshots[variant][activeTheme];
 
   return (
     <div
@@ -33,13 +50,10 @@ export function PhoneMockup({ theme = "dark", className }: PhoneMockupProps) {
         className,
       )}
     >
-      {/* Frame highlight */}
       <div className="absolute inset-0 rounded-[2.75rem] ring-1 ring-inset ring-foreground/10" />
       <div className="absolute -inset-px rounded-[2.75rem] bg-gradient-to-b from-foreground/10 via-transparent to-transparent pointer-events-none" />
 
-      {/* Screen */}
       <div className="relative h-full w-full overflow-hidden rounded-[2.25rem] bg-background">
-        {/* Notch */}
         <div className="absolute left-1/2 top-2 z-20 h-5 w-24 -translate-x-1/2 rounded-full bg-black/80" />
 
         <img
