@@ -1,9 +1,7 @@
-import { Check, LayoutDashboard, Users, Sun, Moon } from "lucide-react";
-import { useState } from "react";
+import { Check, LayoutDashboard, Users, Sun } from "lucide-react";
 
 import { PhoneMockup } from "./PhoneMockup";
 import { Reveal } from "./Reveal";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const rows = [
@@ -18,7 +16,7 @@ const rows = [
       "Monthly budgets with live progress",
       "Recurring transactions and reminders",
     ],
-    variant: "budget" as const,
+    variant: "transactions" as const,
     flip: false,
   },
   {
@@ -32,7 +30,7 @@ const rows = [
       "Goal tracking on savings accounts",
       "Multi-currency with custom formatting",
     ],
-    variant: "debts" as const,
+    variant: "categories" as const,
     flip: true,
   },
   {
@@ -46,14 +44,12 @@ const rows = [
       "Optional Google Drive backup & multi-device sync",
       "Export transactions to CSV anytime",
     ],
-    variant: "offline" as const,
+    variant: "accounts" as const,
     flip: false,
   },
 ];
 
 export function Features() {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
-
   return (
     <section id="features" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-4">
