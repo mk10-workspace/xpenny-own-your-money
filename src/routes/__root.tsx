@@ -27,6 +27,13 @@ function NotFoundComponent() {
 
 export const Route = createRootRoute({
   head: () => ({
+    scripts: [
+      { src: "https://www.googletagmanager.com/gtag/js?id=G-EPHMXJ7F7S", async: true },
+      {
+        children:
+          "window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-EPHMXJ7F7S');",
+      },
+    ],
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
