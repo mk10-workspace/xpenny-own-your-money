@@ -55,7 +55,7 @@ export function Hero() {
             className="relative animate-float"
             style={{ transform: "rotate(-6deg)", ["--tw-rotate" as string]: "-6deg" }}
           >
-            <PhoneMockup variant="budget" />
+            <PhoneMockup variant="hero" />
           </div>
 
           {/* Floating card 1: transaction */}
