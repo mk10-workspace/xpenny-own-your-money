@@ -1,9 +1,7 @@
-import { Check, LayoutDashboard, Users, Sun, Moon } from "lucide-react";
-import { useState } from "react";
+import { Check, LayoutDashboard, Users, Sun } from "lucide-react";
 
 import { PhoneMockup } from "./PhoneMockup";
 import { Reveal } from "./Reveal";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const rows = [
@@ -18,7 +16,7 @@ const rows = [
       "Monthly budgets with live progress",
       "Recurring transactions and reminders",
     ],
-    variant: "budget" as const,
+    variant: "transactions" as const,
     flip: false,
   },
   {
@@ -32,7 +30,7 @@ const rows = [
       "Goal tracking on savings accounts",
       "Multi-currency with custom formatting",
     ],
-    variant: "debts" as const,
+    variant: "categories" as const,
     flip: true,
   },
   {
@@ -46,14 +44,12 @@ const rows = [
       "Optional Google Drive backup & multi-device sync",
       "Export transactions to CSV anytime",
     ],
-    variant: "offline" as const,
+    variant: "accounts" as const,
     flip: false,
   },
 ];
 
 export function Features() {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
-
   return (
     <section id="features" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-4">
@@ -69,43 +65,6 @@ export function Features() {
             A focused toolkit for daily money — without the bloat of legacy banking apps.
           </p>
 
-          {/* Theme toggle */}
-          <div
-            className="mx-auto mt-8 inline-flex items-center gap-1 rounded-full border border-border bg-surface/60 p-1 backdrop-blur"
-            role="tablist"
-            aria-label="App theme preview"
-          >
-            <Button
-              type="button"
-              size="sm"
-              variant={theme === "dark" ? "default" : "ghost"}
-              onClick={() => setTheme("dark")}
-              className={cn(
-                "rounded-full px-4",
-                theme === "dark" && "bg-primary text-primary-foreground hover:bg-primary/90",
-              )}
-              role="tab"
-              aria-selected={theme === "dark"}
-            >
-              <Moon className="mr-1.5 h-3.5 w-3.5" />
-              Dark
-            </Button>
-            <Button
-              type="button"
-              size="sm"
-              variant={theme === "light" ? "default" : "ghost"}
-              onClick={() => setTheme("light")}
-              className={cn(
-                "rounded-full px-4",
-                theme === "light" && "bg-primary text-primary-foreground hover:bg-primary/90",
-              )}
-              role="tab"
-              aria-selected={theme === "light"}
-            >
-              <Sun className="mr-1.5 h-3.5 w-3.5" />
-              Light
-            </Button>
-          </div>
         </Reveal>
 
         <div className="mt-16 space-y-24 md:space-y-32">
@@ -123,7 +82,7 @@ export function Features() {
                 <div className="relative">
                   <div className="absolute inset-0 -z-10 m-auto h-64 w-64 rounded-full bg-primary/20 blur-[80px]" />
                   <div className="glass-strong rounded-3xl p-6 sm:p-10">
-                    <PhoneMockup variant={row.variant} theme={theme} />
+                    <PhoneMockup variant={row.variant} />
                   </div>
                 </div>
 
