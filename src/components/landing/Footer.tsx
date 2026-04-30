@@ -12,16 +12,6 @@ const cols: { title: string; links: FooterLink[] }[] = [
       { label: "Features", href: "/#features" },
       { label: "Security", href: "/#security" },
       { label: "Download", href: "/#download" },
-      { label: "Roadmap", href: "#" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "About", href: "#" },
-      { label: "Blog", href: "#" },
-      { label: "Press", href: "#" },
-      { label: "Contact", href: "#" },
     ],
   },
   {
@@ -29,8 +19,6 @@ const cols: { title: string; links: FooterLink[] }[] = [
     links: [
       { label: "Privacy Policy", to: "/privacy" },
       { label: "Terms of Service", to: "/terms" },
-      { label: "Cookies", href: "#" },
-      { label: "Imprint", href: "#" },
     ],
   },
 ];
