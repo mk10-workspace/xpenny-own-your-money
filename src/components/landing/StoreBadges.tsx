@@ -19,7 +19,9 @@ export function StoreBadges({ className }: { className?: string }) {
         </span>
       </div>
       <a
-        href="#"
+        href="https://play.google.com/store/apps/details?id=com.oneByte.xPenny"
+        target="_blank"
+        rel="noopener noreferrer"
         aria-label="Get it on Google Play"
         className="group inline-flex items-center gap-3 rounded-2xl border border-border bg-foreground/95 px-5 py-3 text-background transition-all hover:scale-[1.02] hover:bg-foreground"
       >
